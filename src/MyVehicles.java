@@ -12,7 +12,7 @@ public class MyVehicles {
     }
 
     public String ecspressSound(){
-        this.message = "**Но этот поезд электрический и он еще не работает**";
+        this.message = "Электронный чух-чух";
         return message;
     }
 

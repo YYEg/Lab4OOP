@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransportCompany {
-        private String transportName;
-        private ArrayList<transportVehicle> transport = new ArrayList();
+        private final String transportName;
+        private ArrayList<transportVehicle> transport = new ArrayList<>();
 
         public TransportCompany(String s){
             transportName = s;
@@ -19,10 +19,19 @@ public class TransportCompany {
                 System.out.println("0 - Выход");
                 usrInput = Integer.parseInt(in.nextLine());
                 if (usrInput == 0) { break;}
-                System.out.println(transport.get(usrInput-1).execute());
+                System.out.println(transport.get(usrInput-1).sound());
             }while(usrInput != 0);
 
             System.out.println("Finished");
+        }
+        public void startEngine(){
+            MyVehicles myVehicles = new MyVehicles();
+            TransportCompany transportCompany = new TransportCompany("Список доступного транспорта");
+            transportCompany.addVehicle(new TransportCompany.Car(myVehicles));
+            transportCompany.addVehicle(new TransportCompany.Train(myVehicles));
+            transportCompany.addVehicle(new TransportCompany.Ecspress(myVehicles));
+
+            transportCompany.start();
         }
 
         private void printVehicles() {
@@ -37,7 +46,7 @@ public class TransportCompany {
 
         public interface transportVehicle {
             String getTitle();
-            String execute();
+            String sound();
         }
 
         public static class Car implements transportVehicle {
@@ -51,7 +60,7 @@ public class TransportCompany {
             }
 
             @Override
-            public String execute() {
+            public String sound() {
                 return  myVehicles.carsSound();
             }
         }
@@ -66,7 +75,9 @@ public class TransportCompany {
             }
 
             String trainForOverride(){
-                return "Это поезд!";
+                return "По́езд в современном понятии — сформированный и сцеплённый состав," +
+                        " состоящий из группы вагонов, с одним или несколькими действующими локомотивами или моторными вагонами," +
+                        " приводящими его в движение, и имеющий установленные сигналы";
             }
             @Override
             public String getTitle() {
@@ -74,7 +85,7 @@ public class TransportCompany {
             }
 
             @Override
-            public String execute() {
+            public String sound() {
                 return myVehicles.trainSound();
             }
         }
@@ -94,7 +105,7 @@ public class TransportCompany {
                 return myVehicles.ecspressSound();
             }
             @Override
-            public String execute() {
+            public String sound() {
                 return trainForOverride();
             }
 

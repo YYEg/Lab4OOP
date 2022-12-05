@@ -40,78 +40,17 @@ public class Menu {
         String execute();
     }
 
-    public static class GenerateArrComand implements MenuCommand{
-        MyArray myArray;
-        public GenerateArrComand(MyArray myArray){
-            this.myArray = myArray;
-        }
+    public static class StartTransport implements MenuCommand{
+        TransportCompany transportCompany = new TransportCompany("Список доступного транспорта");
         @Override
         public String getTitle() {
-            return "Сгенерировать массив";
+            return "Список доступного транспорта";
         }
 
         @Override
         public String execute() {
-            myArray.generate();
-            return "Массив сгенерирован успешно";
-        }
-    }
-
-    public static class PrintArrComand implements MenuCommand{
-        MyArray myArray;
-        public PrintArrComand(MyArray myArray){
-            this.myArray = myArray;
-        }
-        @Override
-        public String getTitle() {
-            return "Вывести массив на печать";
-        }
-
-        @Override
-        public String execute() {
-            return myArray.toString();
-        }
-    }
-
-    public static class InputArrComand implements MenuCommand{
-        MyArray myArray;
-        public InputArrComand(MyArray myArray){
-            this.myArray = myArray;
-        }
-        @Override
-        public String getTitle() {
-            return "Задать массив вручную";
-        }
-
-        @Override
-        public String execute() {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Размер массива?");
-            int size = Integer.parseInt(input.nextLine());
-            int[] temp = new int[size];
-            for (int i = 0; i < size; i++) {
-                System.out.println("Введите " + i + " элемент массива");
-                temp[i] = Integer.parseInt(input.nextLine());
-            }
-            myArray.setData(temp);
-            return myArray.toString();
-        }
-    }
-
-    public static class SortArrComand implements MenuCommand{
-        MyArray myArray;
-        public SortArrComand(MyArray myArray){
-            this.myArray = myArray;
-        }
-        @Override
-        public String getTitle() {
-            return "Отсортировать массив";
-        }
-
-        @Override
-        public String execute() {
-            myArray.sort();
-            return "Сортировка выполнена";
+            transportCompany.startEngine();
+            return "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
         }
     }
 }
