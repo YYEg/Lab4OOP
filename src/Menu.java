@@ -40,17 +40,17 @@ public class Menu {
         String execute();
     }
 
-    public static class StartTransport implements MenuCommand{
-        TransportCompany transportCompany = new TransportCompany("Список доступного транспорта");
+    public static class WorkshopList implements MenuCommand{
+        Workshop workshop = new Workshop("Составляющие фабрики");
         @Override
         public String getTitle() {
-            return "Список доступного транспорта";
+            return "Составляющие фабрики";
         }
 
         @Override
         public String execute() {
-            transportCompany.startEngine();
-            return "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+            workshop.startWorking();
+            return "__________________________________________";
         }
     }
 }
